@@ -13,10 +13,10 @@ import logoutUser from "./components/functions/logoutUser";
 
 function App() {
   let localToken = "";
-  let spotifyToken = "";
+  let spotifyToken = window.localStorage.getItem("token");
 
-  let hashToken = window.localStorage.getItem("token");
-  console.log("this is hashToken", hashToken);
+  // let hashToken = window.localStorage.getItem("token");
+  // console.log("this is hashToken", hashToken);
   return (
     <div className="App">
       <header className="App-header">

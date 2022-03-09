@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
 // ℹ️ Handles password encryption
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
@@ -13,8 +13,6 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
-const isLoggedOut = require("../middleware/isLoggedOut");
-const isLoggedIn = require("../middleware/isLoggedIn");
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 
 router.get("/", (req, res) => {
@@ -158,15 +156,3 @@ router.post("/login", (req, res, next) => {
 });
 
 module.exports = router;
-
-var authOptions = {
-  url: "https://accounts.spotify.com/api/token",
-  headers: {
-    Authorization:
-      "Basic " + new Buffer(client_id + ":" + client_secret).toString("base64"),
-  },
-  form: {
-    grant_type: "client_credentials",
-  },
-  json: true,
-};
