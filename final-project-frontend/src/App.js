@@ -2,16 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 // Component import //
-import Home from "./components/Home";
+import HomePage from "./components/HomePage";
+import About from "./components/About";
+import Create from "./components/Create";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
-import UserSpotifyInfo from "./components/UserSpotifyInfo";
-import SpotifyConnect from "./components/SpotifyConnect";
-import HomePage from "./components/HomePage";
-import Create from "./components/Create";
+// import SpotifyConnect from "./components/SpotifyConnect";
 // Function subcomponent import //
 import logoutUser from "./components/functions/logoutUser";
-import About from "./components/About";
 
 function App() {
   let localToken = "";
@@ -52,7 +50,7 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/user/create" element={<SignUp />} />
           <Route path="/user/login" element={<LogIn />} />
-          <Route path="/user/spotify-info" element={<SpotifyConnect />} />
+          {/* <Route path="/user/spotify-info" element={<SpotifyConnect />} /> */}
         </Routes>
       </div>
       <footer className="App-footer">

@@ -11,13 +11,14 @@ const Create = () => {
   let spotifyId =
     "BQCHINctvF4xPKjOJkORYuP4AGmFKVYA0KMKtC_4iLzrVBa7--PgndFnohYQQFXyZmxfMacY6MoglV49EIu6qLqbUdVLqQI2qLwTNY2xtxlrUmGw_K7-nrOUbeb1li5GAYf2hi0WoM_S_NppbKDIz4FO018AM0XcCIpu3YcVFhc";
   // state Vars//
-  const [topUserTracks, setTopUserTracks] = React.useState([]);
-  const [trackForFunction, setTrackForFunction] = React.useState({});
-  const [manualForm, setManualForm] = React.useState(false);
-  const [displayAlbumArray, setDisplayAlbumArray] = React.useState(false);
-  const [selectTrackTrigger, setSelectTrackTrigger] = React.useState(false);
+  const [topTracksArray, setTopTracksArray] = React.useState([]);
+  const [selectedTrack, setSelectedTrack] = React.useState({});
   const [weeklyStreams, setWeeklyStreams] = React.useState(0);
   const [profitsObject, setProfitsObject] = React.useState(false);
+  const [manualForm, setManualForm] = React.useState(false);
+  // For Triggering A New HTML Render // Referenced in the ternary operators
+  const [dispalyTrackArray, setDisplayTrackArray] = React.useState(false);
+  const [displaySelectedTrack, setDisplaySelectedTrack] = React.useState(false);
 
   const searchUserTopTracks = (e) => {
     e.preventDefault();
@@ -31,8 +32,8 @@ const Create = () => {
       })
       .then((results) => {
         console.log(results.data);
-        setTopUserTracks(results.data.items);
-        setDisplayAlbumArray(true);
+        setTopTracksArray(results.data.items);
+        setDisplayTrackArray(true);
       })
       .catch((err) => {
         console.log("Something went wrong with your axios request", err);
@@ -42,13 +43,13 @@ const Create = () => {
 
   const selectTrack = (trackId) => {
     console.log("Id thats passed as argument", trackId);
-    console.log("topUserTracks array", topUserTracks);
-    let assignmentVar = topUserTracks.find((trackObj) => {
+    console.log("topTracksArray array", topTracksArray);
+    let assignmentVar = topTracksArray.find((trackObj) => {
       return trackObj.id === trackId;
     });
-    setTrackForFunction(assignmentVar);
-    setDisplayAlbumArray(false);
-    setSelectTrackTrigger(true);
+    setSelectedTrack(assignmentVar);
+    setDisplayTrackArray(false);
+    setDisplaySelectedTrack(true);
   };
 
   const calculateArtistProfit = (weeklyStreams) => {
@@ -95,8 +96,8 @@ const Create = () => {
           </div>
         )}
         <div className="album-display">
-          {displayAlbumArray ? (
-            topUserTracks.map((trackObj) => {
+          {dispalyTrackArray ? (
+            topTracksArray.map((trackObj) => {
               return (
                 <div key={trackObj.id}>
                   <img
@@ -122,16 +123,16 @@ const Create = () => {
           )}
         </div>
         <div>
-          {selectTrackTrigger ? (
+          {displaySelectedTrack ? (
             <div>
               <div>
                 <img
-                  src={trackForFunction.album.images[1].url}
+                  src={selectedTrack.album.images[1].url}
                   alt="not found"
                   className="album-image-display"
                 />
-                <p>{trackForFunction.name}</p>
-                <p>{trackForFunction.artists[0].name}</p>
+                <p>{selectedTrack.name}</p>
+                <p>{selectedTrack.artists[0].name}</p>
               </div>
               <form>
                 <label>
@@ -160,7 +161,7 @@ const Create = () => {
           {profitsObject ? (
             <div>
               <p>
-                {trackForFunction.artists[0].name} has made between roughly{" "}
+                {selectedTrack.artists[0].name} has made between roughly{" "}
                 {profitsObject.weeklyProfit} off your streams this week!
               </p>
               <p>
