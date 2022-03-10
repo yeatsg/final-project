@@ -8,8 +8,10 @@ import LogIn from "./components/LogIn";
 import UserSpotifyInfo from "./components/UserSpotifyInfo";
 import SpotifyConnect from "./components/SpotifyConnect";
 import HomePage from "./components/HomePage";
+import Create from "./components/Create";
 // Function subcomponent import //
 import logoutUser from "./components/functions/logoutUser";
+import About from "./components/About";
 
 function App() {
   let localToken = "";
@@ -21,19 +23,22 @@ function App() {
     <div className="App">
       <header className="App-header">
         <ul className="Nav-bar">
-          <li>Spotify Logo</li>
-          <li>About</li>
-          <li>Create Page</li>
-          <li>Dennis Page</li>
+          <li className="nav-item">
+            <Link to="/">Spotify Logo</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/about">About</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/create">Create</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/user/create">Create an Account</Link>
+          </li>
           {!localToken ? (
-            <div>
-              <li>
-                <Link to="/user/create">Create an Account</Link>
-              </li>
-              <li>
-                <Link to="/user/login">Log In</Link>
-              </li>
-            </div>
+            <li className="nav-item">
+              <Link to="/user/login">Log In</Link>
+            </li>
           ) : (
             <button onClick={logoutUser}>Log Out</button>
           )}
@@ -42,14 +47,17 @@ function App() {
       </header>
       <div className="routes">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/secretroom" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/user/create" element={<SignUp />} />
           <Route path="/user/login" element={<LogIn />} />
-          {/* <Route path="/create" element={<Create />} /> */}
           <Route path="/user/spotify-info" element={<SpotifyConnect />} />
         </Routes>
       </div>
+      <footer className="App-footer">
+        <p>by Yeats thanks to Spotify</p>
+      </footer>
     </div>
   );
 }

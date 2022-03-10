@@ -6,12 +6,6 @@ const UserSpotifyInfo = () => {
 
   // Variables for spotify authorization
 
-  const clientId = "769579f19a2c4121bb8bf8a240b67273";
-  const clientSecret = "19eac3fe1a9a4616942c9c16f86dfe87";
-  const redirectURI = "http://localhost:3000";
-  const authEndpoint = "https://accounts.spotify.com/authorize";
-  const responseType = "token";
-
   // State variables
 
   const [token, setToken] = React.useState("");
