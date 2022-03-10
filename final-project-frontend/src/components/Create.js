@@ -4,12 +4,10 @@ import axios from "axios";
 
 const Create = () => {
   // normal vars //
-  let spotifyToken = !window.localStorage.getItem("token")
+  let spotifyToken = !window.localStorage.getItem("spotifyToken")
     ? ""
-    : window.localStorage.getItem("token");
+    : window.localStorage.getItem("spotifyToken");
 
-  let spotifyId =
-    "BQCHINctvF4xPKjOJkORYuP4AGmFKVYA0KMKtC_4iLzrVBa7--PgndFnohYQQFXyZmxfMacY6MoglV49EIu6qLqbUdVLqQI2qLwTNY2xtxlrUmGw_K7-nrOUbeb1li5GAYf2hi0WoM_S_NppbKDIz4FO018AM0XcCIpu3YcVFhc";
   // state Vars//
   const [topTracksArray, setTopTracksArray] = React.useState([]);
   const [selectedTrack, setSelectedTrack] = React.useState({});
@@ -27,7 +25,7 @@ const Create = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${spotifyId}`,
+          Authorization: `Bearer ${spotifyToken}`,
         },
       })
       .then((results) => {
@@ -76,7 +74,7 @@ const Create = () => {
   };
 
   return (
-    <div>
+    <div className="render-body">
       <div>
         {!spotifyToken && !manualForm ? (
           <div>

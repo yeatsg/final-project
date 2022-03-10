@@ -2,8 +2,8 @@ import axios from "axios";
 import { url } from "./url";
 
 export const get = (route) => {
-  const localToken = localStorage.getItem("token");
-  console.log("This was taken out of localStorage".token);
+  const localToken = localStorage.getItem("localToken");
+  console.log("This was taken out of localStorage", localToken);
 
   return axios.get(`${url}${route}`, {
     headers: {
@@ -14,8 +14,8 @@ export const get = (route) => {
 };
 
 export const post = (route, body) => {
-  const localToken = localStorage.getItem("token");
-  console.log("This was taken out of localStorage", token);
+  const localToken = localStorage.getItem("localToken");
+  console.log("This was taken out of localStorage", localToken);
 
   return axios.post(`${url}${route}`, body, {
     headers: {

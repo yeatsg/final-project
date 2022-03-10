@@ -24,7 +24,7 @@ const Home = () => {
 
   React.useEffect(() => {
     const hash = window.location.hash;
-    let hashToken = window.localStorage.getItem("token");
+    let hashToken = window.localStorage.getItem("spotifyToken");
     console.log("this is the hash you SOB", hash);
     console.log("this is the token you SOB", hashToken);
 
@@ -41,7 +41,7 @@ const Home = () => {
       );
 
       window.location.hash = "";
-      window.localStorage.setItem("token", hashToken);
+      window.localStorage.setItem("spotifyToken", hashToken);
     }
     setSpotifyToken(hashToken);
     console.log("this is the final state var token", spotifyToken);
@@ -51,7 +51,7 @@ const Home = () => {
 
   const logout = () => {
     setSpotifyToken("");
-    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("spotifyToken");
   };
 
   // Search Artist function //

@@ -13,7 +13,41 @@
   }
 }
 
+/* Nav Bar  */
+
 .App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  /* align-items: right;
+  justify-content: right; */
+  font-size: calc(15px + 2vmin);
+  color: white;
+}
+
+/* .App-link {
+  
+} */
+
+.Nav-bar {
+  /* font-size: 50%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.right-nav-bar {
+  /* font-size: 50%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.App-footer {
   background-color: #282c34;
   /* min-height: 100vh; */
   display: flex;
@@ -24,24 +58,63 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.Nav-bar {
-  font-size: 50%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  list-style: none;
-}
-
-.App-footer {
-  background-color: #282c34;
-}
-
 .nav-item {
-  margin: 10px;
+  margin: 10px 30px 0px 50px;
+}
+
+.checkmark {
+  width: 10px;
+}
+
+.spotify-status {
+  font-size: 15px;
+  display: flex;
+  justify-content: right;
+  margin-right: 30px;
+}
+
+/* Body */
+
+.render-body {
+  margin: 0px 10% 0px 10%;
+  padding: 10px 10% 10px 10%;
+  background-color: white;
+  height: 200%;
+  filter: drop-shadow(0 0 0.75rem #282c34);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.background-image {
+  background-image: url(../public/green-bokeh-1.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Headers */
+
+h2 {
+  font-size: 45px;
+  font-weight: 400;
+}
+
+/* Buttons and Links */
+button {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background: transparent;
+  color: silver;
+  padding: 15px 20px;
+  text-align: center;
+  display: block;
+  border: 2px solid silver;
+  border-radius: 5px 5px 5px 5px;
+  font-size: 30px;
+  line-height: 1;
+  text-transform: none;
+  font-weight: 400;
 }
 
 /* CREATE.js page */
@@ -49,7 +122,7 @@
 .album-display {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .album-image-display {
@@ -63,4 +136,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* tables */
+
+.table-icon {
+  width: 100px;
+}
+
+/* image sizes */
+
+.site-logo {
+  height: 75px;
+}
+
+.logo-in-nav-bar {
+  display: flex;
 }

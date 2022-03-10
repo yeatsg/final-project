@@ -10,12 +10,13 @@ const createUser = (e) => {
     spotifyId,
     country,
     spotifyAccountType,
+    pictureUrl,
     // Ask Mike how to use the model default values even if client leaves them blank //
   })
     .then((results) => {
       console.log("You are logged in !!!", results);
-      localStorage.setItem("token", results.data);
-      navigate("/home");
+      localStorage.setItem("localToken", results.data);
+      navigate("/");
     })
     .catch((err) => {
       console.ereror(err.message);
