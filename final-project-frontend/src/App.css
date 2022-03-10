@@ -97,7 +97,7 @@
 
 h2 {
   font-size: 45px;
-  font-weight: 400;
+  font-weight: 100px;
 }
 
 /* Buttons and Links */
@@ -127,6 +127,7 @@ button {
 
 .album-image-display {
   width: 150px;
+  margin: 0px 15px 0px 15px;
 }
 
 @keyframes App-logo-spin {
@@ -143,6 +144,24 @@ button {
 .table-icon {
   width: 100px;
 }
+
+.top-tracks-display {
+  border-radius: 5px 5px 0px 0px;
+  background-color: black;
+  color: white;
+  filter: drop-shadow(0 0 0 0.75 black);
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+}
+
+.top-tracks-display > tbody > tr > th {
+  border: ;
+}
+/* .top-tracks-display > tbody > tr {
+  display: flex;
+  flex-direction: row;
+} */
 
 /* image sizes */
 

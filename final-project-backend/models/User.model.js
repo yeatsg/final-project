@@ -25,6 +25,11 @@ const userSchema = new Schema(
       type: String,
       default: "free",
     },
+    pictureUrl: {
+      type: String,
+      default:
+        "https://cdn4.vectorstock.com/i/thumb-large/28/63/profile-placeholder-image-gray-silhouette-vector-21542863.jpg",
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

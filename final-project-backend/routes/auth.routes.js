@@ -24,6 +24,7 @@ router.get("/loggedIn", isAuthenticated, (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
+  console.log(0);
   const { username, password, spotifyId, country, spotifyAccountType } =
     req.body;
 
@@ -38,7 +39,7 @@ router.post("/signup", (req, res) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-
+  console.log(1);
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -57,12 +58,13 @@ router.post("/signup", (req, res) => {
     if (found) {
       return res.status(400).json({ errorMessage: "Username already taken." });
     }
-
+    console.log(2);
     // if user is not found, create a new user - start with hashing the password
     return bcrypt
       .genSalt(saltRounds)
       .then((salt) => bcrypt.hash(password, salt))
       .then((hashedPassword) => {
+        console.log(3);
         // Create a user and save it in the database
         return User.create({
           username,
@@ -70,22 +72,25 @@ router.post("/signup", (req, res) => {
           spotifyId,
           country,
           spotifyAccountType,
-        });
-      })
-      .then((user) => {
-        // Bind the user to the session object
+        })
+          .then((user) => {
+            // Bind the user to the session object
+            console.log(4);
+            const payload = { _id: user._id, username: user.username };
 
-        const payload = { _id: user._id, username: user.username };
+            const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
+              algorithm: "HS256",
+              expiresIn: "6h",
+            });
+            console.log(5);
+            // Send the token as the response
+            return res.status(200).json(authToken);
 
-        const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
-          algorithm: "HS256",
-          expiresIn: "6h",
-        });
-
-        // Send the token as the response
-        return res.status(200).json(authToken);
-
-        // return res.json(user);
+            // return res.json(user);
+          })
+          .catch((error) => {
+            res.json(error);
+          });
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {

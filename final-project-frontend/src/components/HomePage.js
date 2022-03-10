@@ -82,6 +82,11 @@ const HomePage = () => {
     console.log(topTracks);
     return (
       <table className="top-tracks-display">
+        <thead>
+          <th></th>
+          <th>Today's Top Tracks</th>
+          <th></th>
+        </thead>
         <tbody>
           {topTracks.map((trackObj) => (
             <tr key={trackObj.track.id}>
