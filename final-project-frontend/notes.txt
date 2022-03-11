@@ -22,3 +22,5 @@ Vox Spotify Wrapped: https://www.vox.com/culture/22814121/spotify-wrapped-2021-a
 Rolling Stone royalty statistics: https://www.rollingstone.com/pro/features/spotify-million-artists-royalties-1038408/
 
 Spotify: https://loudandclear.byspotify.com/#contextualizing
+
+Spotify daily charts: https://kworb.net/spotify/country/us_daily.html

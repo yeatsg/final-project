@@ -33,7 +33,7 @@ const LogIn = () => {
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
-      <form onSubmit={loginUser}>
+      <form onSubmit={loginUser} className="autho-form">
         <label>
           Username
           <input
@@ -52,6 +52,7 @@ const LogIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        <br />
         <button type="submit">Submit</button>
       </form>
     </div>

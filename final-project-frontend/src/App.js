@@ -29,21 +29,54 @@ function App() {
                   className="site-logo"
                 />
               </Link>
+              <p> UNWRAPPED</p>
             </li>
           </div>
           <div className="right-nav-bar">
             <li className="nav-item">
-              <Link to="/about">About</Link>
+              <Link
+                to="/about"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                }}
+              >
+                ABOUT
+              </Link>
             </li>
             <li className="nav-item">
-              <Link to="/create">Create</Link>
+              <Link
+                to="/create"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                }}
+              >
+                CREATE
+              </Link>
             </li>
             <li className="nav-item">
-              <Link to="/user/create">Create an Account</Link>
+              <Link
+                to="/user/create"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                }}
+              >
+                SIGN UP
+              </Link>
             </li>
             {!localToken ? (
               <li className="nav-item">
-                <Link to="/user/login">Log In</Link>
+                <Link
+                  to="/user/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                  }}
+                >
+                  LOG IN
+                </Link>
               </li>
             ) : (
               <button onClick={logoutUser}>Log Out</button>

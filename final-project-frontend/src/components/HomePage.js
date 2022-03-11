@@ -7,7 +7,9 @@ const HomePage = () => {
   // Variables for spotify authorization
 
   const clientId = env.CLIENT_ID;
-  const redirectURI = "http://localhost:3000";
+
+  // const redirectURI = "http://localhost:3000";
+  const redirectURI = "https://unwrapped-the-spotify-app.netlify.app/";
   const authEndpoint = "https://accounts.spotify.com/authorize";
   const responseType = "token";
   const scopes =
@@ -82,7 +84,7 @@ const HomePage = () => {
     console.log(topTracks);
     return (
       <table className="top-tracks-display">
-        <thead>
+        <thead className="table-box">
           <th></th>
           <th>Today's Top Tracks</th>
           <th></th>
@@ -90,18 +92,18 @@ const HomePage = () => {
         <tbody>
           {topTracks.map((trackObj) => (
             <tr key={trackObj.track.id}>
-              <th>
+              <th className="table-box">
                 <img
                   src={trackObj.track.album.images[1].url}
                   alt="noimage"
                   className="table-icon"
                 />
               </th>
-              <th>
+              <th className="table-box">
                 <p>{trackObj.track.name}</p>
                 <p>{trackObj.track.artists[0].name}</p>
               </th>
-              <th>Streams: x</th>
+              <th className="table-box">Between $13-25K</th>
             </tr>
           ))}
         </tbody>
@@ -113,10 +115,30 @@ const HomePage = () => {
     <div className="render-body">
       <div>
         <h2>WELCOME TO UN-WRAPPED!</h2>
-        <button onClick={searchTopPlaylist}>
-          Give me Olivia Rodrigo object please
-        </button>
-        <div>{topTracks.length ? renderTopTracks() : "Loading..."}</div>
+        {!spotifyToken ? (
+          <div>
+            <p>
+              Before we can begin,you will need to connect your Spotify account
+              to this app and give us access to your top artists. Let's get
+              started with the button below.
+            </p>
+            <a
+              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=${scopes}`}
+              className="button-to-link"
+            >
+              Login to Spotify
+            </a>
+          </div>
+        ) : (
+          <div>
+            <button onClick={searchTopPlaylist}>Today's Top Tracks</button>
+            <br />
+          </div>
+        )}
+        {/* <button onClick={searchTopPlaylist}>Today's Top Tracks</button> */}
+        <br></br>
+        {/* <br></br> */}
+        <div>{topTracks.length ? renderTopTracks() : <br />}</div>
         <br></br>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -124,18 +146,7 @@ const HomePage = () => {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </p>
-        {!spotifyToken ? (
-          <div>
-            <p>This program requires Spotify to run</p>
-            <a
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=${scopes}`}
-            >
-              Login to Spotify
-            </a>
-          </div>
-        ) : (
-          <button onClick={logout}>Log Out</button>
-        )}
+        <button onClick={logout}>Log Out</button>
       </div>
     </div>
   );

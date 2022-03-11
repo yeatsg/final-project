@@ -56,7 +56,7 @@ const SignUp = () => {
         better results. Would you like to autofill your form with your Spotify
         Account information?
       </p>
-      <form onSubmit={createUser}>
+      <form onSubmit={createUser} className="autho-form">
         <label>
           Username
           <input
@@ -87,6 +87,7 @@ const SignUp = () => {
             }}
           />
         </label> */}
+        <br />
         <button type="submit">Create Account</button>
       </form>
     </div>

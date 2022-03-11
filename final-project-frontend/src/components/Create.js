@@ -11,12 +11,15 @@ const Create = () => {
   // state Vars//
   const [topTracksArray, setTopTracksArray] = React.useState([]);
   const [selectedTrack, setSelectedTrack] = React.useState({});
-  const [weeklyStreams, setWeeklyStreams] = React.useState(0);
+  const [weeklyStreams, setWeeklyStreams] = React.useState(1);
   const [profitsObject, setProfitsObject] = React.useState(false);
   const [manualForm, setManualForm] = React.useState(false);
   // For Triggering A New HTML Render // Referenced in the ternary operators
-  const [dispalyTrackArray, setDisplayTrackArray] = React.useState(false);
+  const [displayTrackArray, setDisplayTrackArray] = React.useState(false);
   const [displaySelectedTrack, setDisplaySelectedTrack] = React.useState(false);
+  const [displayTrackArrayButton, setDisplayTrackArrayButton] =
+    React.useState(true);
+  const [displayMoreInfo, setDisplayMoreInfo] = React.useState(false);
 
   const searchUserTopTracks = (e) => {
     e.preventDefault();
@@ -48,12 +51,13 @@ const Create = () => {
     setSelectedTrack(assignmentVar);
     setDisplayTrackArray(false);
     setDisplaySelectedTrack(true);
+    setDisplayTrackArrayButton(false);
   };
 
   const calculateArtistProfit = (weeklyStreams) => {
     // $$ Royalty per stream Vars
-    const minProfit = 0.33;
-    const maxProfit = 0.55;
+    const minProfit = 0.0033;
+    const maxProfit = 0.0055;
     // Stream # Vars
     const monthlyStreams = weeklyStreams * 4;
     const annualStreams = monthlyStreams * 12;
@@ -70,6 +74,8 @@ const Create = () => {
       ).toFixed(2)}`,
     };
 
+    setDisplaySelectedTrack(false);
+
     return returnObject;
   };
 
@@ -84,17 +90,28 @@ const Create = () => {
             </p>
             <p>
               Or you can input your information{" "}
-              <button onClick={setManualForm(true)}>manually</button>
+              <button
+                onClick={() => {
+                  setManualForm(true);
+                }}
+              >
+                manually
+              </button>
             </p>
           </div>
         ) : (
           <div>
             <p>You are ready to use this form.</p>
-            <button onClick={searchUserTopTracks}>Add Shit</button>
+            {displayTrackArrayButton ? (
+              <button onClick={searchUserTopTracks}>Your Top 5 Tracks</button>
+            ) : (
+              <br />
+            )}
           </div>
         )}
+        {/* Display the album Array */}
         <div className="album-display">
-          {dispalyTrackArray ? (
+          {displayTrackArray ? (
             topTracksArray.map((trackObj) => {
               return (
                 <div key={trackObj.id}>
@@ -122,26 +139,34 @@ const Create = () => {
         </div>
         <div>
           {displaySelectedTrack ? (
-            <div>
-              <div>
+            <div className="final-screen">
+              <div className="track-box">
                 <img
                   src={selectedTrack.album.images[1].url}
                   alt="not found"
-                  className="album-image-display"
+                  className="selected-album-image"
                 />
-                <p>{selectedTrack.name}</p>
+                <p>
+                  <b>{selectedTrack.name}</b>
+                </p>
                 <p>{selectedTrack.artists[0].name}</p>
               </div>
-              <form>
+              <form className="track-form">
                 <label>
-                  How Many Times Have You Listened to the Track This Week?
                   <input
                     type="number"
+                    min="1"
+                    max="50"
                     value={weeklyStreams}
+                    className="large-input"
                     onChange={(e) => {
                       setWeeklyStreams(e.target.value);
                     }}
                   />
+                  <h1>
+                    How Many Times Have You Listened to the Track This Week?
+                  </h1>
+                  <br />
                   <button
                     type="button"
                     onClick={() => {
@@ -154,19 +179,67 @@ const Create = () => {
               </form>
             </div>
           ) : (
-            <br></br>
+            <br />
           )}
+          {/* Final Acceptance Screen */}
           {profitsObject ? (
             <div>
-              <p>
-                {selectedTrack.artists[0].name} has made between roughly{" "}
-                {profitsObject.weeklyProfit} off your streams this week!
-              </p>
-              <p>
-                At this rate, they'll make between roughly{" "}
-                {profitsObject.monthlyProfit} this month!
-              </p>
-              <p>And then {profitsObject.annualProfit} this year!</p>
+              <h1>You've done it!</h1>
+              <br />
+              <div className="final-screen">
+                <div className="track-box">
+                  <img
+                    src={selectedTrack.album.images[1].url}
+                    alt="not found"
+                    className="selected-album-image"
+                  />
+                  <p>
+                    <b>{selectedTrack.name}</b>
+                  </p>
+                  <p>{selectedTrack.artists[0].name}</p>
+                </div>
+                {!displayMoreInfo ? (
+                  <div className="track-form">
+                    <p>
+                      We estimate that this week {selectedTrack.artists[0].name}{" "}
+                      has made between roughly
+                    </p>
+                    <h2>{profitsObject.weeklyProfit}</h2>
+                    <p>From your streams on Spotify.</p>
+                    <button
+                      onClick={() => {
+                        setDisplayMoreInfo(true);
+                      }}
+                    >
+                      More Info
+                    </button>
+                  </div>
+                ) : (
+                  <div className="track-form">
+                    <p>If you keep this up they'll make</p>
+                    <h2>{profitsObject.monthlyProfit}</h2>
+                    <p>
+                      this <b>month</b> and
+                    </p>
+                    <h2>{profitsObject.annualProfit}</h2>
+
+                    <p>
+                      By the end of this <b>year!</b>
+                    </p>
+                    <button
+                      onClick={() => {
+                        setDisplayTrackArrayButton(true);
+                        setDisplaySelectedTrack(false);
+                        setDisplayTrackArray(false);
+                        setDisplayMoreInfo(false);
+                        setProfitsObject(false);
+                      }}
+                    >
+                      Reset
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             <br />
