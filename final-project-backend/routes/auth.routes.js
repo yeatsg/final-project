@@ -74,7 +74,6 @@ router.post("/signup", (req, res) => {
           spotifyAccountType,
         })
           .then((user) => {
-            // Bind the user to the session object
             console.log(4);
             const payload = { _id: user._id, username: user.username };
 

@@ -46,15 +46,14 @@ const SignUp = () => {
     <div className="render-body">
       <h2>Create an Account</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        By signing up with UN-WRAPPED, you will have access to additional
+        features, and we can save your information for future use.
       </p>
       <p>
         Our app can utilize information from your Spotify account to provide
-        better results. Would you like to autofill your form with your Spotify
-        Account information?
+        better results. If you have already succesfully connected your Spotify
+        to our app, then some of your information may be already preloaded into
+        our form.
       </p>
       <form onSubmit={createUser} className="autho-form">
         <label>

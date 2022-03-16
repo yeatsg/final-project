@@ -28,10 +28,11 @@ const LogIn = () => {
     <div className="render-body">
       <h2>Log In</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        If you already have an account set up with UN-WRAPPED, you can fill out
+        the form below to log in. Once logged in, we can save your information.
+        When you revisit you will be able to view your previous history with our
+        app and hopefully share information with your friends and on social
+        media.
       </p>
       <form onSubmit={loginUser} className="autho-form">
         <label>

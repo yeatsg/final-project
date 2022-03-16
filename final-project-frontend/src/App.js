@@ -11,10 +11,46 @@ import LogIn from "./components/LogIn";
 // import SpotifyConnect from "./components/SpotifyConnect";
 // Function subcomponent import //
 import logoutUser from "./components/functions/logoutUser";
+import React from "react";
 
 function App() {
   let localToken = "";
-  let spotifyToken = window.localStorage.getItem("spotifyToken");
+  // let spotifyToken = window.localStorage.getItem("spotifyToken");
+
+  const [spotifyToken, setSpotifyToken] = React.useState("");
+
+  if (!window.localStorage.getItem) {
+    setSpotifyToken("");
+  }
+
+  // FUNCTIONS //
+
+  // Token assignment upon RedirectURI //
+
+  React.useEffect(() => {
+    const hash = window.location.hash;
+    let hashToken = window.localStorage.getItem("spotifyToken");
+    console.log("this is the hash you SOB", hash);
+    console.log("this is the token you SOB", hashToken);
+
+    if (!hashToken && hash) {
+      hashToken = hash
+        .substring(1)
+        .split("&")
+        .find((elem) => elem.startsWith("access_token"))
+        .split("=")[1];
+
+      console.log(
+        "This is the token as obliterated by string methods",
+        hashToken
+      );
+
+      window.location.hash = "";
+      window.localStorage.setItem("spotifyToken", hashToken);
+    }
+    setSpotifyToken(hashToken);
+    console.log("this is the final state var token", spotifyToken);
+  }, []);
 
   return (
     <div className="App">
