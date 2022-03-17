@@ -8,12 +8,16 @@ import About from "./components/About";
 import Create from "./components/Create";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
-// import SpotifyConnect from "./components/SpotifyConnect";
+import SpotifyConnect from "./components/SpotifyConnect";
 // Function subcomponent import //
 import logoutUser from "./components/functions/logoutUser";
 import React from "react";
+import { useState } from "react";
 
 function App() {
+  // State Variables //
+  const [spotifyModal, setSpotifyModal] = useState(false);
+
   let localToken = "";
   // let spotifyToken = window.localStorage.getItem("spotifyToken");
 
@@ -146,7 +150,15 @@ function App() {
           </Routes>
         </div>
       </div>
+      {spotifyModal && <SpotifyConnect setSpotifyModal={setSpotifyModal} />}
       <footer className="App-footer">
+        <button
+          onClick={() => {
+            setSpotifyModal(true);
+          }}
+        >
+          Clcik Me
+        </button>
         <p>by Yeats thanks to Spotify</p>
       </footer>
     </div>

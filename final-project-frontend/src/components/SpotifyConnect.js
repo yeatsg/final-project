@@ -1,10 +1,27 @@
 import React from "react";
 
-const SpotifyConnect = () => {
+const SpotifyConnect = (setSpotifyModal) => {
+  const clientId = "769579f19a2c4121bb8bf8a240b67273";
+  const redirectURI = "http://localhost:3000";
+  // const redirectURI = "https://unwrapped-the-spotify-app.netlify.app/";
+  const authEndpoint = "https://accounts.spotify.com/authorize";
+  const responseType = "token";
+  const scopes =
+    "user-library-read user-top-read user-read-recently-played user-read-private user-library-read user-follow-read";
+
   return (
     <div className="bg-modal">
       <div className="modal-content">
-        <div className="modal-close">+</div>
+        <button
+          className="modal-close"
+          onClick={() => {
+            {
+              setSpotifyModal.setSpotifyModal(false);
+            }
+          }}
+        >
+          +
+        </button>
         <img src="spotify-logo.png" alt="no image" />
         <p>
           Before we can begin,you will need to connect your Spotify account to
