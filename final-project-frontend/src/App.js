@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React from "react";
+import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 // import "../public";
 // Component import //
@@ -11,25 +13,16 @@ import LogIn from "./components/LogIn";
 import SpotifyConnect from "./components/SpotifyConnect";
 // Function subcomponent import //
 import logoutUser from "./components/functions/logoutUser";
-import React from "react";
-import { useState } from "react";
 
 function App() {
   // State Variables //
-  const [spotifyModal, setSpotifyModal] = useState(false);
-
-  let localToken = "";
-  // let spotifyToken = window.localStorage.getItem("spotifyToken");
-
+  const [localToken, setLocalToken] = React.useState("");
   const [spotifyToken, setSpotifyToken] = React.useState("");
-
-  if (!window.localStorage.getItem) {
-    setSpotifyToken("");
-  }
+  const [spotifyModal, setSpotifyModal] = useState(false);
 
   // FUNCTIONS //
 
-  // Token assignment upon RedirectURI //
+  // Spotify Token assignment upon RedirectURI //
 
   React.useEffect(() => {
     const hash = window.location.hash;
@@ -141,16 +134,32 @@ function App() {
       <div className="background-image">
         <div className="routes">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  setTokens={{ spotify: setSpotifyToken, local: setLocalToken }}
+                  tokens={{ spotify: spotifyToken, local: localToken }}
+                />
+              }
+            />
             <Route path="/about" element={<About />} />
-            <Route path="/create" element={<Create />} />
+            <Route
+              path="/create"
+              element={
+                <Create
+                  setTokens={{ spotify: setSpotifyToken, local: setLocalToken }}
+                  tokens={{ spotify: spotifyToken, local: localToken }}
+                />
+              }
+            />
             <Route path="/user/create" element={<SignUp />} />
             <Route path="/user/login" element={<LogIn />} />
             {/* <Route path="/user/spotify-info" element={<SpotifyConnect />} /> */}
           </Routes>
         </div>
       </div>
-      {spotifyModal && <SpotifyConnect setSpotifyModal={setSpotifyModal} />}
+      {spotifyModal && <SpotifyConnect activate={setSpotifyModal} />}
       <footer className="App-footer">
         <button
           onClick={() => {

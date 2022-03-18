@@ -2,12 +2,7 @@ import React from "react";
 import axios from "axios";
 // import calculateArtistProfit from "./functions/calculateArtistProfit";
 
-const Create = () => {
-  // normal vars //
-  let spotifyToken = !window.localStorage.getItem("spotifyToken")
-    ? ""
-    : window.localStorage.getItem("spotifyToken");
-
+const Create = (props) => {
   // state Vars//
   const [topTracksArray, setTopTracksArray] = React.useState([]);
   const [selectedTrack, setSelectedTrack] = React.useState({});
@@ -28,7 +23,7 @@ const Create = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${spotifyToken}`,
+          Authorization: `Bearer ${props.tokens.spotify}`,
         },
       })
       .then((results) => {
@@ -38,17 +33,18 @@ const Create = () => {
       })
       .catch((err) => {
         console.log("Something went wrong with your axios request", err);
-        console.log(spotifyToken);
+        console.log(props.tokens.spotify);
       });
   };
 
   const selectTrack = (trackId) => {
-    console.log("Id thats passed as argument", trackId);
-    console.log("topTracksArray array", topTracksArray);
-    let assignmentVar = topTracksArray.find((trackObj) => {
-      return trackObj.id === trackId;
-    });
-    setSelectedTrack(assignmentVar);
+    // Check trackId against the id inside the array already and return the selected item //
+    // Deleted variable and put all logic directly inside setSelectedTrack -- make sure it works //
+    setSelectedTrack(
+      topTracksArray.find((trackObj) => {
+        return trackObj.id === trackId;
+      })
+    );
     setDisplayTrackArray(false);
     setDisplaySelectedTrack(true);
     setDisplayTrackArrayButton(false);
@@ -82,36 +78,16 @@ const Create = () => {
   return (
     <div className="render-body">
       <div>
-        {!spotifyToken && !manualForm ? (
-          <div>
-            <p>
-              You are not currently signed in to your Spotify account. In order
-              to best utilize this resource. You can sign in here.
-            </p>
-            <p>
-              Or you can input your information{" "}
-              <button
-                onClick={() => {
-                  setManualForm(true);
-                }}
-              >
-                manually
-              </button>
-            </p>
-          </div>
-        ) : (
-          <div>
-            <p>You are ready to use this form.</p>
-            {displayTrackArrayButton ? (
-              <button onClick={searchUserTopTracks}>Your Top 5 Tracks</button>
-            ) : (
-              <br />
-            )}
-          </div>
-        )}
-        {/* Display the album Array */}
+        <div>
+          <p>You are ready to use this form.</p>
+          {/* STEP 1: Display Submit Button */}
+          {displayTrackArrayButton && (
+            <button onClick={searchUserTopTracks}>Your Top 5 Tracks</button>
+          )}
+        </div>
+        {/* STEP 2: The Top 5 Tracks are displayed and mapped with select buttons */}
         <div className="album-display">
-          {displayTrackArray ? (
+          {displayTrackArray &&
             topTracksArray.map((trackObj) => {
               return (
                 <div key={trackObj.id}>
@@ -132,13 +108,12 @@ const Create = () => {
                   </button>
                 </div>
               );
-            })
-          ) : (
-            <br />
-          )}
+            })}
         </div>
+        {/* STEP 3: The individual track is selected and displayed along with custom form*/}
         <div>
-          {displaySelectedTrack ? (
+          {displaySelectedTrack && (
+            // Display Selected Track Info
             <div className="final-screen">
               <div className="track-box">
                 <img
@@ -151,6 +126,7 @@ const Create = () => {
                 </p>
                 <p>{selectedTrack.artists[0].name}</p>
               </div>
+              {/* Weekly Stream Form */}
               <form className="track-form">
                 <label>
                   <input
@@ -178,14 +154,13 @@ const Create = () => {
                 </label>
               </form>
             </div>
-          ) : (
-            <br />
           )}
-          {/* Final Acceptance Screen */}
-          {profitsObject ? (
+          {/* STEP FOUR: Show Results */}
+          {profitsObject && (
             <div>
               <h1>You've done it!</h1>
               <br />
+              {/* Track Information displayed throughout */}
               <div className="final-screen">
                 <div className="track-box">
                   <img
@@ -198,6 +173,7 @@ const Create = () => {
                   </p>
                   <p>{selectedTrack.artists[0].name}</p>
                 </div>
+                {/* Ternary operator to toggle between album information */}
                 {!displayMoreInfo ? (
                   <div className="track-form">
                     <p>
@@ -226,6 +202,7 @@ const Create = () => {
                     <p>
                       By the end of this <b>year!</b>
                     </p>
+                    {/* Reset Button */}
                     <button
                       onClick={() => {
                         setDisplayTrackArrayButton(true);
@@ -241,8 +218,6 @@ const Create = () => {
                 )}
               </div>
             </div>
-          ) : (
-            <br />
           )}
         </div>
       </div>

@@ -1,7 +1,6 @@
-import React from "react";
-
-const logoutSpotify = () => {
+const logoutSpotify = (setTokens) => {
   window.localStorage.removeItem("spotifyToken");
+  setTokens.spotify("");
 };
 
 export default logoutSpotify;
