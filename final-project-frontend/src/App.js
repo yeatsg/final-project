@@ -6,6 +6,7 @@ import { Routes, Route, Link } from "react-router-dom";
 // import "../public";
 // Component import //
 import HomePage from "./components/HomePage";
+import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Create from "./components/Create";
 import SignUp from "./components/SignUp";
@@ -27,8 +28,9 @@ function App() {
   React.useEffect(() => {
     const hash = window.location.hash;
     let hashToken = window.localStorage.getItem("spotifyToken");
-    console.log("this is the hash you SOB", hash);
-    console.log("this is the token you SOB", hashToken);
+    hashToken
+      ? console.log("this is the hash you SOB", hashToken)
+      : console.log("No hash");
 
     if (!hashToken && hash) {
       hashToken = hash
@@ -52,84 +54,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ul className="Nav-bar">
-          <div>
-            <li className="logo-in-nav-bar">
-              <Link to="/">
-                <img
-                  src="spotify-logo.png"
-                  alt="no image"
-                  className="site-logo"
-                />
-              </Link>
-              <p> UNWRAPPED</p>
-            </li>
-          </div>
-          <div className="right-nav-bar">
-            <li className="nav-item">
-              <Link
-                to="/about"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                ABOUT
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/create"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                CREATE
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/user/create"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                SIGN UP
-              </Link>
-            </li>
-            {!localToken ? (
-              <li className="nav-item">
-                <Link
-                  to="/user/login"
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  LOG IN
-                </Link>
-              </li>
-            ) : (
-              <button onClick={logoutUser}>Log Out</button>
-            )}
-          </div>
-        </ul>
-        <div className="spotify-status">
-          {spotifyToken ? (
-            <p>
-              <img
-                src="green-checkmark.png"
-                alt="no-image"
-                className="checkmark"
-              />
-              Spotify Connected
-            </p>
-          ) : (
-            <p>Spotify Not Connected</p>
-          )}
-        </div>
+        <Navbar
+          localToken={localToken}
+          spotifyToken={spotifyToken}
+          logoutUser={logoutUser}
+        />
       </header>
       <div className="background-image">
         <div className="routes">
