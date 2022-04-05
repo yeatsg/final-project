@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // function imports //
 import renderTopTracks from "./functions/renderTopTracks";
 import logoutSpotify from "./functions/logoutSpotify";
@@ -33,10 +34,15 @@ const HomePage = (props) => {
 
   return (
     <div className="render-body">
-      <div>
-        <h2>WELCOME TO UN-WRAPPED!</h2>
+      <div id="landing-page">
+        <h1>Your artists, your streams</h1>
+        <h3>How much have your favorites made per stream?</h3>
 
-        <div>
+        <button>
+          <Link to="/create">Fuck around and find out</Link>
+        </button>
+
+        {/* <div>
           <button onClick={searchTopPlaylist}>Today's Top Tracks</button>
           <br />
         </div>
@@ -44,7 +50,10 @@ const HomePage = (props) => {
         <div>
           {topTracks && renderTopTracks(topTracks)}
           <br />
-        </div>
+        </div> */}
+      </div>
+
+      <div>
         <p>
           Spotify is the largest streaming service in the world with access to
           all the world's greatest artists. Every time a user streams an
