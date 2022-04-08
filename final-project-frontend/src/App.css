@@ -1,3 +1,10 @@
+
+@font-face {
+  font-family: "CustomRubiks";
+  src: url("../public/rubik/Rubik-VariableFont_wght.ttf");
+  /* src: url("../public/rubik/Rubik-Italic-VariableFont_wght.ttf"); */
+  }
+
 .App {
   text-align: center;
 }
@@ -65,18 +72,20 @@
 /* Body */
 
 .render-body {
-  margin: 0px 10% 0px 10%;
+  /* margin: 0px 10% 0px 10%;
   padding: 10px 10% 10px 10%;
   background-color: rgb(5, 5, 5);
   background-image: url(../public/paper-texture.jpg);
   background-repeat: repeat;
   background-size: cover;
   background-blend-mode: soft-light;
-  height: 200%;
+  height: 200%; */
+  /* background-color: black; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   color: white;
+  font-family: CustomRubiks, Arial, Helvetica, sans-serif ;
 }
 
 .background-image {
@@ -87,10 +96,15 @@
   background-size: cover;
 }
 
+.text-body {
+  margin: 0px 10% 0px 10%;
+  padding: 10px 10% 10px 10%;
+}
+
 /* Headers */
 
 h1 {
-  font-size: calc(30px + 2vmin);
+  font-size: calc(30px + 4vmin);
 }
 
 h2 {
@@ -134,8 +148,34 @@ button {
 /* Landing Page */
 
 #landing-page {
-  padding: calc(500px+2vmin) calc(100px+2vmin) calc(100px+2vmin)
-    calc(100px+2vmin);
+  background-color: #cdf564;
+
+  /* Font */
+  color: #F037A5;
+  height: calc(250px + 50vmin);
+
+  /* Flex Box */
+  display: flex;
+  flex-direction: inherit;
+  justify-content: center;
+  
+}
+
+#grid-2 {
+  height: calc(250px + 50vmin);
+  
+  display: flex;
+  flex-direction: inherit;
+  justify-content: center;
+}
+
+#grid-3 {
+  background-color: #cdf564;;
+  height: calc(250px + 50vmin);
+  
+  display: flex;
+  flex-direction: inherit;
+  justify-content: center;
 }
 
 /* CREATE.js page */

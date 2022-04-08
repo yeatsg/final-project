@@ -35,45 +35,53 @@ const HomePage = (props) => {
   return (
     <div className="render-body">
       <div id="landing-page">
-        <h1>Your artists, your streams</h1>
-        <h3>How much have your favorites made per stream?</h3>
+        <div class="text-body">
+          <h1>Your Spotify artists, your money</h1>
+          <h3>How much have your favorites made per stream?</h3>
 
-        <button>
-          <Link to="/create">Fuck around and find out</Link>
-        </button>
+          <button>
+            <Link to="/create">Fuck around and find out</Link>
+          </button>
 
-        {/* <div>
+          {/* <div>
           <button onClick={searchTopPlaylist}>Today's Top Tracks</button>
           <br />
-        </div>
-
-        <div>
+          </div>
+          
+          <div>
           {topTracks && renderTopTracks(topTracks)}
           <br />
         </div> */}
+        </div>
       </div>
 
-      <div>
-        <p>
-          Spotify is the largest streaming service in the world with access to
-          all the world's greatest artists. Every time a user streams an
-          artist's track, an artist makes money back in royalties. With the
-          UN-WRAPPED app we can help our users know how much their favorite
-          artists have been able to make, and hopefully share that information
-          with their friends.
-        </p>
-        <p>
-          Thanks to the Spotify API, which Spotify has made available publically
-          to web developers, we are able to use your actual Spotify informaiton
-          to help make these estimates as accurate as possible.
-        </p>
-        <button
-          onClick={() => {
-            logoutSpotify(props.setTokens);
-          }}
-        >
-          Log Out of Spotify
-        </button>
+      <div id="grid-2">
+        <div class="text-body">
+          <p>
+            Spotify is the largest streaming service in the world with access to
+            all the world's greatest artists. Every time a user streams an
+            artist's track, an artist makes money back in royalties. With the
+            UN-WRAPPED app we can help our users know how much their favorite
+            artists have been able to make, and hopefully share that information
+            with their friends.
+          </p>
+        </div>
+      </div>
+      <div id="grid-3">
+        <div class="text-body">
+          <p>
+            Thanks to the Spotify API, which Spotify has made available
+            publically to web developers, we are able to use your actual Spotify
+            informaiton to help make these estimates as accurate as possible.
+          </p>
+          <button
+            onClick={() => {
+              logoutSpotify(props.setTokens);
+            }}
+          >
+            Log Out of Spotify
+          </button>
+        </div>
       </div>
     </div>
   );
