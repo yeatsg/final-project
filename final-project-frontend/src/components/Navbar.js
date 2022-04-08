@@ -11,12 +11,11 @@ function Navbar(props) {
           <li className="logo-in-nav-bar">
             <Link to="/">
               <img
-                src="spotify-logo.png"
+                src="unwrapped-logo-draft2.png"
                 alt="no image"
                 className="site-logo"
               />
             </Link>
-            <p> UNWRAPPED</p>
           </li>
         </div>
         <div className="right-nav-bar">

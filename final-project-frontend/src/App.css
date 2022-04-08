@@ -19,7 +19,7 @@
   justify-content: right; */
   font-size: calc(14px + 1vmin);
   color: white;
-  height: 125px;
+  height: calc(100px + 5vmin)
 }
 
 .Nav-bar {
@@ -254,7 +254,7 @@ button {
 /* image sizes */
 
 .site-logo {
-  height: 75px;
+  height: 120px;
 }
 
 .logo-in-nav-bar {
