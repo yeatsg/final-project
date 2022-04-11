@@ -149,6 +149,9 @@ button {
 
 #landing-page {
   background-color: #cdf564;
+  background-image: url("../public/circle-graphic-overlay.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 
   /* Font */
   color: #F037A5;

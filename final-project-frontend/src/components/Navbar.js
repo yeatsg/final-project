@@ -11,7 +11,7 @@ function Navbar(props) {
           <li className="logo-in-nav-bar">
             <Link to="/">
               <img
-                src="unwrapped-logo-draft2.png"
+                src="unwrapped-logo-draft3.png"
                 alt="no image"
                 className="site-logo"
               />
