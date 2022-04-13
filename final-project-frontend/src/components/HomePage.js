@@ -38,10 +38,10 @@ const HomePage = (props) => {
         <div class="text-body">
           <h1>Your Spotify artists, your money</h1>
           <h3>How much have your favorites made per stream?</h3>
-
-          <button>
-            <Link to="/create">Fuck around and find out</Link>
-          </button>
+          <br />
+          <Link to="/create" className="react-link-to-button">
+            Let's Find Out
+          </Link>
 
           {/* <div>
           <button onClick={searchTopPlaylist}>Today's Top Tracks</button>
