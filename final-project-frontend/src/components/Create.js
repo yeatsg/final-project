@@ -76,13 +76,15 @@ const Create = (props) => {
   };
 
   return (
-    <div className="render-body">
-      <div>
+    <div className="render-body green-pink-bg ">
+      <div className="text-body">
         <div>
           <p>You are ready to use this form.</p>
           {/* STEP 1: Display Submit Button */}
           {displayTrackArrayButton && (
-            <button onClick={searchUserTopTracks}>Your Top 5 Tracks</button>
+            <button onClick={searchUserTopTracks} className="green-pink-btn">
+              Your Top 5 Tracks
+            </button>
           )}
         </div>
         {/* STEP 2: The Top 5 Tracks are displayed and mapped with select buttons */}
@@ -103,6 +105,7 @@ const Create = (props) => {
                     onClick={() => {
                       selectTrack(trackObj.id);
                     }}
+                    className="green-pink-btn"
                   >
                     Select
                   </button>
@@ -148,6 +151,7 @@ const Create = (props) => {
                     onClick={() => {
                       setProfitsObject(calculateArtistProfit(weeklyStreams));
                     }}
+                    className="green-pink-btn"
                   >
                     Submit
                   </button>
@@ -186,6 +190,7 @@ const Create = (props) => {
                       onClick={() => {
                         setDisplayMoreInfo(true);
                       }}
+                      className="green-pink-btn"
                     >
                       More Info
                     </button>
@@ -211,6 +216,7 @@ const Create = (props) => {
                         setDisplayMoreInfo(false);
                         setProfitsObject(false);
                       }}
+                      className="green-pink-btn"
                     >
                       Reset
                     </button>

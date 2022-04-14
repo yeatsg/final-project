@@ -25,7 +25,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="render-body">
+    <div className="render-body text-body">
       <h2>Log In</h2>
       <p>
         If you already have an account set up with UN-WRAPPED, you can fill out

@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="render-body">
+    <div className="render-body text-body">
       <p>About this App!</p>
       <p>
         Spotify UN-WRAPPED utilizes the Spotify API to create an estimate of

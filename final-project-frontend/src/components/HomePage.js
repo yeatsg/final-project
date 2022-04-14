@@ -32,6 +32,8 @@ const HomePage = (props) => {
       });
   };
 
+  const removeLinkStyle = { textDecoration: "none" };
+
   return (
     <div className="render-body">
       <div id="landing-page">
@@ -39,19 +41,9 @@ const HomePage = (props) => {
           <h1>Your Spotify artists, your money</h1>
           <h3>How much have your favorites made per stream?</h3>
           <br />
-          <Link to="/create" className="react-link-to-button">
+          <Link to="/create" className="green-pink-btn" style={removeLinkStyle}>
             Let's Find Out
           </Link>
-
-          {/* <div>
-          <button onClick={searchTopPlaylist}>Today's Top Tracks</button>
-          <br />
-          </div>
-          
-          <div>
-          {topTracks && renderTopTracks(topTracks)}
-          <br />
-        </div> */}
         </div>
       </div>
 
@@ -74,13 +66,27 @@ const HomePage = (props) => {
             publically to web developers, we are able to use your actual Spotify
             informaiton to help make these estimates as accurate as possible.
           </p>
-          <button
+          <h3>Try it out below</h3>
+
+          <div>
+            <button onClick={searchTopPlaylist} className="green-pink-btn">
+              Today's Top Tracks
+            </button>
+            <br />
+          </div>
+
+          <div>
+            {topTracks && renderTopTracks(topTracks)}
+            <br />
+          </div>
+
+          {/* <button
             onClick={() => {
               logoutSpotify(props.setTokens);
             }}
           >
             Log Out of Spotify
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

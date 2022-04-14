@@ -43,7 +43,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="render-body">
+    <div className="render-body text-body">
       <h2>Create an Account</h2>
       <p>
         By signing up with UN-WRAPPED, you will have access to additional
