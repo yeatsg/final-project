@@ -36,7 +36,7 @@ const HomePage = (props) => {
 
   return (
     <div className="render-body">
-      <div id="landing-page">
+      <div id="landing-page" className="green-pink-bg pink-bubble-bg">
         <div class="text-body">
           <h1>Your Spotify artists, your money</h1>
           <h3>How much have your favorites made per stream?</h3>

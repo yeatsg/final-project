@@ -151,6 +151,11 @@ button {
   letter-spacing: 2px;
 }
 
+.pink-bubble-bg {
+  background-image: url("../public/circle-graphic-overlay.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .button-to-link {
   margin: 0 auto;
@@ -171,13 +176,7 @@ button {
 /* Landing Page */
 
 #landing-page {
-  background-color: #cdf564;
-  background-image: url("../public/circle-graphic-overlay.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-
   /* Font */
-  color: #F037A5;
   height: calc(250px + 50vmin);
 
   /* Flex Box */
@@ -206,6 +205,10 @@ button {
 
 /* CREATE.js page */
 
+#form-creation {
+  min-height: 650px;
+}
+
 .album-display {
   display: flex;
   flex-direction: row;
@@ -232,6 +235,8 @@ button {
 
 .large-input {
   /* font stylings */
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-stretch: wider;
   font-size: 175px;
   color: inherit;
   font-weight: 500px;
@@ -323,4 +328,23 @@ p {
   font-size: 42px;
   transform: rotate(45deg);
   cursor: pointer;
+}
+
+/* Animations */
+
+@keyframes fadeAndScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(.75,.75,1);
+  }
+
+  70% {
+    opacity: 0;
+    transform: scale3d(.75,.75,1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale3d(1,1,1)
+  }
 }
