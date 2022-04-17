@@ -5,7 +5,7 @@ function Navbar(props) {
   let { localToken, spotifyToken, logoutUser } = props;
 
   return (
-    <div>
+    <div className="nav-bar-padding">
       <ul className="Nav-bar">
         <div>
           <li className="logo-in-nav-bar">
@@ -19,39 +19,34 @@ function Navbar(props) {
           </li>
         </div>
         <div className="right-nav-bar">
-          <li className="nav-item">
-            <Link
-              to="/about"
-              style={{
-                textDecoration: "none",
-                color: "white",
-              }}
-            >
-              About
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/create"
-              style={{
-                textDecoration: "none",
-                color: "white",
-              }}
-            >
-              Create
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/user/create"
-              style={{
-                textDecoration: "none",
-                color: "white",
-              }}
-            >
-              Sign Up
-            </Link>
-          </li>
+          <Link
+            to="/about"
+            style={{
+              textDecoration: "none",
+              color: "white",
+            }}
+          >
+            <li className="nav-item">About</li>
+          </Link>
+          <Link
+            to="/create"
+            style={{
+              textDecoration: "none",
+              color: "white",
+            }}
+          >
+            <li className="nav-item">Create</li>
+          </Link>
+          {/* CRUD User Information Hidden for Now */}
+          {/* <Link
+            to="/user/create"
+            style={{
+              textDecoration: "none",
+              color: "white",
+            }}
+          >
+            <li className="nav-item">Sign Up</li>
+          </Link>
           {!localToken ? (
             <li className="nav-item">
               <Link
@@ -66,7 +61,7 @@ function Navbar(props) {
             </li>
           ) : (
             <button onClick={logoutUser}>Log Out</button>
-          )}
+          )} */}
         </div>
       </ul>
       <div className="spotify-status">

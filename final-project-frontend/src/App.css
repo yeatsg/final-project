@@ -12,14 +12,19 @@
 /* Nav Bar  */
 
 .App-header {
+  /* Font Stylings */
+  font-family: "CustomRubiks";
   background-color: black;
+  color: white;
+  font-size: calc(10px + 1vmin);
+  
+  /* Positioning */
   display: flex;
   flex-direction: column;
-  /* align-items: right;
-  justify-content: right; */
-  font-size: calc(14px + 1vmin);
-  color: white;
-  /* height: calc(100px + 5vmin) */
+}
+
+.nav-bar-padding {
+  padding: 10px 10% 10px 10%;
 }
 
 .Nav-bar {
@@ -171,6 +176,7 @@ button {
   line-height: 1;
   text-transform: none;
   font-weight: 400;
+  text-decoration: none;
 }
 
 /* Landing Page */
@@ -302,35 +308,50 @@ p {
 
 .bg-modal {
   width: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.69);
-  position: absolute;
+  position: fixed;
   top: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  width: 500px;
-  height: 300px;
-  background-color: white;
+  width: 400px;
+  height: 500px;
   border-radius: 4px;
   text-align: center;
-  padding: 20px;
+  padding: 40px;
   position: relative;
+  border: '1px solid #ccc';
+  background-color: white;
 }
 
 .modal-close {
   position: absolute;
-  top: 0;
-  right: 14px;
+  top: 5px;
+  right: 20px;
   font-size: 42px;
   transform: rotate(45deg);
   cursor: pointer;
+  padding: 0px;
 }
 
 /* Animations */
+
+.nav-item:hover {
+  color:#F037A5
+}
+
+.modal-close:hover {
+   color:#484848;
+   font-size: 42.5px;
+  /* Font-size hover doesn't work when
+  position is absolute. Something to fix
+  for a later time */
+  /* font-size: 46px; */
+}
 
 @keyframes fadeAndScaleIn {
   0% {

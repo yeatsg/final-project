@@ -43,40 +43,41 @@ const SignUp = () => {
   };
 
   return (
-    <div className="render-body text-body">
-      <h2>Create an Account</h2>
-      <p>
-        By signing up with UN-WRAPPED, you will have access to additional
-        features, and we can save your information for future use.
-      </p>
-      <p>
-        Our app can utilize information from your Spotify account to provide
-        better results. If you have already succesfully connected your Spotify
-        to our app, then some of your information may be already preloaded into
-        our form.
-      </p>
-      <form onSubmit={createUser} className="autho-form">
-        <label>
-          Username
-          <input
-            // type="text"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            // type="text"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </label>
-        {/* <label>
+    <div className="green-pink-bg pink-bubble-bg">
+      <div className="text-body">
+        <h2>Create an Account</h2>
+        <p>
+          By signing up with UN-WRAPPED, you will have access to additional
+          features, and we can save your information for future use.
+        </p>
+        <p>
+          Our app can utilize information from your Spotify account to provide
+          better results. If you have already succesfully connected your Spotify
+          to our app, then some of your information may be already preloaded
+          into our form.
+        </p>
+        <form onSubmit={createUser} className="autho-form">
+          <label>
+            Username
+            <input
+              // type="text"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              // type="text"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </label>
+          {/* <label>
           Country You Reside
           <input
             type="text"
@@ -86,9 +87,10 @@ const SignUp = () => {
             }}
           />
         </label> */}
-        <br />
-        <button type="submit">Create Account</button>
-      </form>
+          <br />
+          <button type="submit">Create Account</button>
+        </form>
+      </div>
     </div>
   );
 };

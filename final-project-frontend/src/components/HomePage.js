@@ -28,6 +28,7 @@ const HomePage = (props) => {
         setTopTracks(results.data.tracks.items.slice(0, 5));
       })
       .catch((err) => {
+        props.triggerModal(true);
         console.log("Something went wrong with your axios request", err);
       });
   };

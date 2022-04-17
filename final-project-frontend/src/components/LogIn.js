@@ -25,37 +25,39 @@ const LogIn = () => {
   };
 
   return (
-    <div className="render-body text-body">
-      <h2>Log In</h2>
-      <p>
-        If you already have an account set up with UN-WRAPPED, you can fill out
-        the form below to log in. Once logged in, we can save your information.
-        When you revisit you will be able to view your previous history with our
-        app and hopefully share information with your friends and on social
-        media.
-      </p>
-      <form onSubmit={loginUser} className="autho-form">
-        <label>
-          Username
-          <input
-            value={username}
-            type="text"
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            value={password}
-            type="text"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+    <div className="green-pink-bg pink-bubble-bg">
+      <div className="text-body">
+        <h2>Log In</h2>
+        <p>
+          If you already have an account set up with UN-WRAPPED, you can fill
+          out the form below to log in. Once logged in, we can save your
+          information. When you revisit you will be able to view your previous
+          history with our app and hopefully share information with your friends
+          and on social media.
+        </p>
+        <form onSubmit={loginUser} className="autho-form">
+          <label>
+            Username
+            <input
+              value={username}
+              type="text"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              value={password}
+              type="text"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -50,6 +50,7 @@ const Create = (props) => {
         setDisplayTrackArrayButton(false);
       })
       .catch((err) => {
+        props.triggerModal(true);
         console.log("Something went wrong with your axios request", err);
         console.log(props.tokens.spotify);
       });
@@ -64,7 +65,6 @@ const Create = (props) => {
       })
     );
     setDisplayTrackArray(false);
-    setDisplaySelectedTrack(true);
   };
 
   const calculateArtistProfit = (weeklyStreams) => {
@@ -86,17 +86,12 @@ const Create = (props) => {
         annualStreams * maxProfit
       ).toFixed(2)}`,
     };
-
     setDisplaySelectedTrack(false);
-
     return returnObject;
   };
 
   return (
-    <div
-      id="form-creation"
-      className="render-body green-pink-bg pink-bubble-bg"
-    >
+    <div id="form-creation" className="render-body green-pink-bg">
       <div className="text-body">
         <div>
           <h1>You are ready to use this form.</h1>
@@ -110,50 +105,24 @@ const Create = (props) => {
               <button
                 onClick={searchUserTopTracks}
                 className="green-pink-btn"
-                // title="Step 1 Transition"
                 style={{ ...defaultStyles, ...transitionStyles[state] }}
+                mountOnEnter
+                unmountOnExit
               >
                 Your Top 5 Tracks
               </button>
             )}
           </Transition>
-          {/* {displayTrackArrayButton && (
-            <button onClick={searchUserTopTracks} className="green-pink-btn">
-              Your Top 5 Tracks
-            </button>
-          )} */}
         </div>
         {/* STEP 2: The Top 5 Tracks are displayed and mapped with select buttons */}
-        {/* <div className="album-display">
-          {displayTrackArray &&
-            topTracksArray.map((trackObj) => {
-              return (
-                <div key={trackObj.id}>
-                  <img
-                    src={trackObj.album.images[1].url}
-                    alt="not found"
-                    className="album-image-display"
-                  />
-                  <p>{trackObj.name}</p>
-                  <p>{trackObj.artists[0].name}</p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      selectTrack(trackObj.id);
-                    }}
-                    className="green-pink-btn"
-                  >
-                    Select
-                  </button>
-                </div>
-              );
-            })}
-        </div> */}
         <Transition
           in={displayTrackArray}
           timeout={duration}
           mountOnEnter
           unmountOnExit
+          onExited={() => {
+            setDisplaySelectedTrack(true);
+          }}
         >
           {(state) => (
             <div
@@ -191,6 +160,9 @@ const Create = (props) => {
           timeout={duration}
           mountOnEnter
           unmountOnExit
+          onExited={() => {
+            setDisplayInfo(true);
+          }}
         >
           {(state) => (
             <div style={{ ...defaultStyles, ...transitionStyles[state] }}>
@@ -228,7 +200,6 @@ const Create = (props) => {
                       type="button"
                       onClick={() => {
                         setProfitsObject(calculateArtistProfit(weeklyStreams));
-                        setDisplayInfo(true);
                       }}
                       className="green-pink-btn"
                     >
@@ -240,50 +211,6 @@ const Create = (props) => {
             </div>
           )}
         </Transition>
-        {/* {displaySelectedTrack && (
-            // Display Selected Track Info
-            <div className="final-screen">
-              <div className="track-box">
-                <img
-                  src={selectedTrack.album.images[1].url}
-                  alt="not found"
-                  className="selected-album-image"
-                />
-                <p>
-                  <b>{selectedTrack.name}</b>
-                </p>
-                <p>{selectedTrack.artists[0].name}</p>
-              </div>
-              {/* Weekly Stream Form */}
-        {/* <form className="track-form">
-                <label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="50"
-                    value={weeklyStreams}
-                    className="large-input"
-                    onChange={(e) => {
-                      setWeeklyStreams(e.target.value);
-                    }}
-                  />
-                  <h1>
-                    How Many Times Have You Listened to the Track This Week?
-                  </h1>
-                  <br />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setProfitsObject(calculateArtistProfit(weeklyStreams));
-                    }}
-                    className="green-pink-btn"
-                  >
-                    Submit
-                  </button>
-                </label>
-              </form>
-            </div>
-                  )} */}
         {/* STEP FOUR: Show Results */}
         <Transition
           in={profitsObject}
@@ -293,8 +220,6 @@ const Create = (props) => {
         >
           {(state) => (
             <div style={{ ...defaultStyles, ...transitionStyles[state] }}>
-              <h1>You've done it!</h1>
-              <br />
               {/* Track Information displayed throughout */}
               <div className="final-screen">
                 <div className="track-box">
@@ -314,6 +239,9 @@ const Create = (props) => {
                   timeout={duration}
                   mountOnEnter
                   unmountOnExit
+                  onExited={() => {
+                    setDisplayMoreInfo(true);
+                  }}
                 >
                   {(state) => (
                     <div
@@ -324,11 +252,11 @@ const Create = (props) => {
                         We estimate that this week{" "}
                         {selectedTrack.artists[0].name} has made between roughly
                       </p>
-                      <h2>{profitsObject.weeklyProfit}</h2>
+                      <h1>{profitsObject.weeklyProfit}</h1>
                       <p>From your streams on Spotify.</p>
                       <button
                         onClick={() => {
-                          setDisplayMoreInfo(true);
+                          setDisplayInfo(false);
                         }}
                         className="green-pink-btn"
                       >
@@ -350,11 +278,11 @@ const Create = (props) => {
                       style={{ ...defaultStyles, ...transitionStyles[state] }}
                     >
                       <p>If you keep this up they'll make</p>
-                      <h2>{profitsObject.monthlyProfit}</h2>
+                      <h1>{profitsObject.monthlyProfit}</h1>
                       <p>
                         this <b>month</b> and
                       </p>
-                      <h2>{profitsObject.annualProfit}</h2>
+                      <h1>{profitsObject.annualProfit}</h1>
 
                       <p>
                         By the end of this <b>year!</b>
@@ -376,6 +304,7 @@ const Create = (props) => {
                   )}
                 </Transition>
               </div>
+              <h1>You've done it!</h1>
             </div>
           )}
         </Transition>

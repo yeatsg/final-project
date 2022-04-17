@@ -1,6 +1,6 @@
 import React from "react";
 
-const SpotifyConnect = (activate) => {
+const SpotifyConnect = (props) => {
   // VARIABLES //
   // const clientId = process.env.CLIENT_ID;
   const clientId = "769579f19a2c4121bb8bf8a240b67273";
@@ -18,7 +18,7 @@ const SpotifyConnect = (activate) => {
           className="modal-close"
           onClick={() => {
             {
-              activate.setSpotifyModal(false);
+              props.activate(false);
             }
           }}
         >
@@ -26,7 +26,7 @@ const SpotifyConnect = (activate) => {
         </button>
         <img src="spotify-logo.png" alt="no image" style={{ width: "200px" }} />
         <p>
-          Before we can begin,you will need to connect your Spotify account to
+          Before we can begin, you will need to connect your Spotify account to
           this app and give us access to your top artists. Let's get started
           with the button below.
         </p>

@@ -69,6 +69,7 @@ function App() {
                 <HomePage
                   setTokens={{ spotify: setSpotifyToken, local: setLocalToken }}
                   tokens={{ spotify: spotifyToken, local: localToken }}
+                  triggerModal={setSpotifyModal}
                 />
               }
             />
@@ -79,6 +80,7 @@ function App() {
                 <Create
                   setTokens={{ spotify: setSpotifyToken, local: setLocalToken }}
                   tokens={{ spotify: spotifyToken, local: localToken }}
+                  triggerModal={setSpotifyModal}
                 />
               }
             />
@@ -90,14 +92,14 @@ function App() {
       </div>
       {spotifyModal && <SpotifyConnect activate={setSpotifyModal} />}
       <footer className="App-footer">
-        <button
-          onClick={() => {
-            setSpotifyModal(true);
-          }}
-        >
-          Clcik Me
-        </button>
-        <p>by Yeats thanks to Spotify</p>
+        <p>
+          Powered by
+          <img
+            src="spotify-full-logo-white.png"
+            alt="dennis sympathy"
+            style={{ width: "200px" }}
+          />
+        </p>
       </footer>
     </div>
   );
