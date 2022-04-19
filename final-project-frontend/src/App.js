@@ -97,7 +97,7 @@ function App() {
           <img
             src="spotify-full-logo-white.png"
             alt="dennis sympathy"
-            style={{ width: "200px" }}
+            style={{ width: "200px", padding: "0px 10px 0px 10px" }}
           />
         </p>
       </footer>
