@@ -33,16 +33,15 @@ const Create = (props) => {
   const [displayMoreInfo, setDisplayMoreInfo] = React.useState(false);
 
   const searchUserTopTracks = (e) => {
+    console.log(props.spotifyToken)
     console.log("Axios call starts");
     e.preventDefault();
     axios
-      .get("https://api.spotify.com/v1/me/top/tracks?limit=5", {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${props.tokens.spotify}`,
-        },
-      })
+      .get(
+        "https://api.spotify.com/v1/me/top/tracks?limit=5", 
+        {
+          headers: { 'Authorization': `Bearer ${props.spotifyToken}` },
+        })
       .then((results) => {
         console.log(results.data);
         setTopTracksArray(results.data.items);
@@ -50,9 +49,10 @@ const Create = (props) => {
         setDisplayTrackArrayButton(false);
       })
       .catch((err) => {
+        console.log("props:", props)
         props.triggerModal(true);
         console.log("Something went wrong with your axios request", err);
-        console.log(props.tokens.spotify);
+        console.log("Props.tokens.spotify: ", props.spotifyToken);
       });
   };
 
@@ -99,15 +99,15 @@ const Create = (props) => {
           <Transition
             in={displayTrackArrayButton}
             timeout={duration}
-            mountOnEnter
+            mountOnEnter={true}
           >
             {(state) => (
               <button
                 onClick={searchUserTopTracks}
                 className="green-pink-btn"
                 style={{ ...defaultStyles, ...transitionStyles[state] }}
-                mountOnEnter
-                unmountOnExit
+                mountOnEnter={true}
+                unmountOnExit={true}
               >
                 Your Top 5 Tracks
               </button>
@@ -118,8 +118,8 @@ const Create = (props) => {
         <Transition
           in={displayTrackArray}
           timeout={duration}
-          mountOnEnter
-          unmountOnExit
+          mountOnEnter={true}
+          unmountOnExit={true}
           onExited={() => {
             setDisplaySelectedTrack(true);
           }}
@@ -158,8 +158,8 @@ const Create = (props) => {
         <Transition
           in={displaySelectedTrack}
           timeout={duration}
-          mountOnEnter
-          unmountOnExit
+          mountOnEnter={true}
+          unmountOnExit={true}
           onExited={() => {
             setDisplayInfo(true);
           }}
@@ -215,8 +215,8 @@ const Create = (props) => {
         <Transition
           in={profitsObject}
           timeout={duration}
-          mountOnEnter
-          unmountOnExit
+          mountOnEnter={true}
+          unmountOnExit={true}
         >
           {(state) => (
             <div style={{ ...defaultStyles, ...transitionStyles[state] }}>
@@ -237,8 +237,8 @@ const Create = (props) => {
                 <Transition
                   in={displayInfo}
                   timeout={duration}
-                  mountOnEnter
-                  unmountOnExit
+                  mountOnEnter={true}
+                  unmountOnExit={true}
                   onExited={() => {
                     setDisplayMoreInfo(true);
                   }}
@@ -269,8 +269,8 @@ const Create = (props) => {
                 <Transition
                   in={displayMoreInfo}
                   timeout={duration}
-                  mountOnEnter
-                  unmountOnExit
+                  mountOnEnter={true}
+                  unmountOnExit={true}
                 >
                   {(state) => (
                     <div

@@ -78,7 +78,9 @@ function App() {
               path="/create"
               element={
                 <Create
-                  setTokens={{ spotify: setSpotifyToken, local: setLocalToken }}
+                  //spotifyToken={spotifyToken}
+                  //setSpotifyToken={setSpotifyToken}
+                  spotifyToken={spotifyToken}
                   tokens={{ spotify: spotifyToken, local: localToken }}
                   triggerModal={setSpotifyModal}
                 />
@@ -90,7 +92,12 @@ function App() {
           </Routes>
         </div>
       </div>
-      {spotifyModal && <SpotifyConnect activate={setSpotifyModal} />}
+      {spotifyModal && <SpotifyConnect 
+        activate={setSpotifyModal} 
+        triggerModal={setSpotifyModal} 
+        setSpotifyToken={setSpotifyToken}
+        tokens={{ spotify: spotifyToken }}
+      />}
       <footer className="App-footer">
         <p>
           Powered by
