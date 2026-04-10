@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 
-//import { Transition } from "react-transition-group";
+//import { usePathName } from "next/navigation"
+//This will allow me to get a url to pass as redirect uri in any environment.
+//Not sure if it should be global or specific to the Home and Create pages. 
 import Link from "next/link"
 import { useTopTracks } from "@/hooks/useTopTracks"
 
@@ -26,7 +28,6 @@ const calculateArtistProfit = (weeklyStreams) => {
         ).toFixed(2)}`,
     };
     console.log("calculateArtistProfit has ran succesfully: ", returnObject)
-    //setDisplaySelectedTrack(false);
     return returnObject;
 };
 
@@ -35,7 +36,7 @@ export default function createPage() {
     const { topTracks, loading } = useTopTracks()
     const [selectedTrack, setSelectedTrack] = useState(null)
     const [projectedRevenue, setProjectedRevenue] = useState({})
- 
+
     let artistsNameMapped = '';
 
     return <>
@@ -46,7 +47,7 @@ export default function createPage() {
                 <p>Loading your top tracks...</p>
             </>)
             :
-            topTracks && topTracks.length ?
+            topTracks && topTracks.length && !selectedTrack ?
                 (<>
                     <h3>Your top tracks</h3>
                     <div className="album-display">
@@ -55,7 +56,7 @@ export default function createPage() {
                                 <h4>{t.name}</h4>
                                 {artistsNameMapped = t.artists.map(a => a.name).join(', ')}
                                 <p>by {artistsNameMapped}</p>
-                                <img src={t.album.images?.[0]?.url} alt={artistsNameMapped} className="album-image-display"/>
+                                <img src={t.album.images?.[0]?.url} alt={artistsNameMapped} className="album-image-display" />
                                 <button type="button" onClick={() => setSelectedTrack(t)} className="green-pink-btn"></button>
                             </div>
                         })}
@@ -67,15 +68,62 @@ export default function createPage() {
                 </>)}
 
         {/* Step 2: How often do you listen? */}
-        {selectedTrack && (
-            <form>
-                <p>How many times did you listen to this track this week?</p>
-                <input type="number" />
-                <button type="button" onClick={(numb)=>{setProjectedRevenue(calculateArtistProfit(numb))}}>Submit</button>
-            </form>
+        {selectedTrack && !projectedRevenue ? (
+            <div>
+                <div className="album-display">
+                    <div key={selectedTrack.id}>
+                        <h4>{selectedTrack.name}</h4>
+                        {artistsNameMapped = selectedTrack.artists.map(a => a.name).join(', ')}
+                        <p>by {artistsNameMapped}</p>
+                        <img src={selectedTrack.album.images?.[0]?.url} alt={artistsNameMapped} className="album-image-display" />
+                    </div>
+                </div>
+                <form>
+                    <p>How many times did you listen to this track this week?</p>
+                    <input type="number" />
+                    <button type="button" onClick={(numb) => { setProjectedRevenue(calculateArtistProfit(numb)) }}>Submit</button>
+                </form>
+            </div>
+        ) : (
+            <div className="empty-div">empty</div>
         )}
 
         {/*Step 3: Results */}
+        {Object.keys(projectedRevenue).length !== 0 ? (
+            <div >
+                <div className="album-display">
+                    <div key={selectedTrack.id}>
+                        <h4>{/*selectedTrack.name*/}</h4>
+                        {artistsNameMapped = selectedTrack.artists.map(a => a.name).join(', ')}
+                        <p>by {artistsNameMapped}</p>
+                        <img src={selectedTrack.album.images?.[0]?.url} alt={artistsNameMapped} className="album-image-display" />
+                    </div>
+                </div>
+                <div
+                    className="track-form"
+                >
+                    <p>
+                        We estimate that this week{" "}
+                        {selectedTrack.artists[0].name} has made between roughly
+                    </p>
+                    <h1>{profitsObject.weeklyProfit}</h1>
+                    <p>From your streams on Spotify.</p>
+                    <button
+                        onClick={() => {
+                            console.log("Placeholder retrigger => ");
+                        }}
+                        className="green-pink-btn"
+                    >
+                        More Info
+                    </button>
+                </div>
+            </div>
+        ) : (
+            <div>
+            </div>
+
+        )
+        }
     </>
 
 }
