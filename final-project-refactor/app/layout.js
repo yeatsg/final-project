@@ -11,17 +11,19 @@ export default async function RootLayout({ children }) {
     <SpotifyContextProvider>
       <html lang="en">
         <head>
-      
+
         </head>
         <body>
-          <header>
-            <h1>This is the header.</h1>
+          <header className="bg_secondary-color">
+            <img src="./public/rubik/unwrapped-logo-draft3.png" />
             <a href="/">Home</a>
             <a href="/about">About</a>
           </header>
           {children}
-          <footer>
-            <p>This is the footer</p>
+          <footer className="bg_secondary-color">
+            <div className="center-flex">
+              <p>Powered by Spotify</p>
+            </div>
           </footer>
         </body>
       </html>
