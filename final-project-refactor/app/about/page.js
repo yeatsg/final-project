@@ -1,8 +1,8 @@
 export default function AboutPage() {
   return (
     <>
-      <div className="render-body">
-        <div className="pink-white-bg">
+      <section className="bg_primary-color">
+        <div className="spacing-md">
           <div className="text-body">
             <h1>What is Unwrapped?</h1>
             <p>
@@ -12,7 +12,10 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        <div id="about-grid2">
+      </section>
+      <section className="bg_secondary-color">
+
+        <div className="spacing-md">
           <div className="text-body">
             <h2>About</h2>
             <p>
@@ -30,7 +33,9 @@ export default function AboutPage() {
             <p>Thus, Unwrapped was born.</p>
           </div>
         </div>
-        <div id="about-grid3">
+      </section>
+      <section className="bg_primary-color">
+        <div className="spacing-md">
           <div className="text-body">
             <div>
               <h1>Where does our data come from?</h1>
@@ -74,7 +79,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

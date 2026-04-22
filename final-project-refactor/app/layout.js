@@ -23,8 +23,10 @@ export default async function RootLayout({ children }) {
             <SpotifyLoginLink />
           </header>
           {children}
-          <footer>
-            <p>This is the footer</p>
+          <footer className="bg_secondary-color">
+            <div className="center-flex">
+              <p>Powered by Spotify</p>
+            </div>
           </footer>
         </body>
       </html>
