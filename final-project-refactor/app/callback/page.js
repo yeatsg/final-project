@@ -1,19 +1,38 @@
+//      /callback?state=xyz
+
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { useEffect } from "react"
 import { useSpotify } from "@/context/spotifyContext"
+import { useEffect } from "react"
 
 export default function SpotifyCallbackPage() {
+
     const searchParams = useSearchParams()
+    const state = searchParams.get('state')
     const code = searchParams.get('code')
-    const spotifyCtx = useSpotify()
+
+    const spotifyContext = useSpotify()
 
     useEffect(() => {
         if (code) {
-            spotifyCtx.fetchTokenFromCode(code)
+            localStorage.setItem("spotify-auth-code", code)
+            spotifyContext.fetchTokenFromCode(code)
         }
+        setTimeout(() => {
+            window.location.href = state
+        }, 3000);
     }, [])
 
-    return <h3>Logging you in...</h3>
+
+
+    // return <>
+    // </>
+    
+    return <>
+        <h3>State: {state}</h3>
+        <h3>Code: {code}</h3>
+        <p>You are logged in. redirecting...</p>
+    </>
 }
+

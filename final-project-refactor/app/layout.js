@@ -1,6 +1,8 @@
 import "./globals.css";
+import Link from "next/link";
 
 import SpotifyContextProvider from "@/context/SpotifyContextProvider";
+import SpotifyLoginLink from "@/components/SpotifyLoginLink";
 
 export default async function RootLayout({ children }) {
 
@@ -11,13 +13,14 @@ export default async function RootLayout({ children }) {
     <SpotifyContextProvider>
       <html lang="en">
         <head>
-      
         </head>
         <body>
           <header>
             <h1>This is the header.</h1>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
+            <Link href="/">Home</Link>
+            <Link href="/about">About</Link>
+            <Link href="/create">create</Link>
+            <SpotifyLoginLink />
           </header>
           {children}
           <footer>

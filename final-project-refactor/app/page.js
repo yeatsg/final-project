@@ -5,8 +5,6 @@ import { useState } from "react";
 import Link from 'next/link';
 import Modal from "@/components/Modal";
 
-console.log("Link import:", Link)
-
 export default function Home (props) {
 
   // State variables

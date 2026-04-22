@@ -39,19 +39,26 @@ export default function createPage() {
     let artistsNameMapped = '';
 
     return <>
-        <Link href="/api/spotifyLogin">Log in with Spotify</Link>
+        
         {/* Step 1: Your Top 5 Tracks */}
         {loading ?
             (<>
                 <p>Loading your top tracks...</p>
             </>)
             :
-            topTracks && topTracks.length ?
+            (topTracks && topTracks.length) ?
                 (<>
                     <h3>Your top tracks</h3>
                     <div className="album-display">
                         {topTracks.map(t => {
-                            return <div key={t.id}>
+
+                            const noTrackSelected = selectedTrack === null;
+                            const thisTrackSelected = selectedTrack === t
+                            const shown = noTrackSelected || thisTrackSelected
+
+                            return <div key={t.id} style={{
+                                display: shown ? "block" : "none"
+                            }}>
                                 <h4>{t.name}</h4>
                                 {artistsNameMapped = t.artists.map(a => a.name).join(', ')}
                                 <p>by {artistsNameMapped}</p>
