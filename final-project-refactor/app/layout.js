@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import SpotifyContextProvider from "@/context/SpotifyContextProvider";
 import SpotifyLoginLink from "@/components/SpotifyLoginLink";
+import ResizeHeaderByScroll from "@/components/ResizeHeaderByScroll";
+
 
 export default async function RootLayout({ children }) {
 
@@ -15,13 +17,24 @@ export default async function RootLayout({ children }) {
         <head>
         </head>
         <body>
-          <header>
-            <h1>This is the header.</h1>
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/create">create</Link>
-            <SpotifyLoginLink />
+          <header id="head" className="bg_secondary-color">
+            <div className="spacing-md">
+              <div id="head_logo-container">
+                <Link href="/">
+                  <img id="head_logo" src="unwrapped-logo-draft3.png" height="80px" width="80px" />
+                </Link>
+              </div>
+              <div id="head_nav" >
+                <div className="container-row">
+                  <Link href="/">🏠︎</Link>
+                  <Link href="/about">About</Link>
+                  <Link href="/create">Create</Link>
+                  <SpotifyLoginLink />
+                </div>
+              </div>
+            </div>
           </header>
+          <ResizeHeaderByScroll></ResizeHeaderByScroll>
           {children}
           <footer className="bg_secondary-color">
             <div className="center-flex">

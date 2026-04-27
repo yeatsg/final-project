@@ -1,0 +1,8 @@
+unwrappedcluster
+
+un: yeatsg
+pw: E65lnOzImAFjbElS
+
+for .env
+
+mongodb+srv://yeatsg:<db_password>@unwrappedcluster.rqnm9fo.mongodb.net/?appName=unwrappedcluster

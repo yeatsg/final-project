@@ -8,6 +8,6 @@ export default function SpotifyLoginLink() {
     const pathname = usePathname()
 
     return <>
-        <Link href={`/api/spotifyLogin?pathname=${pathname}`}>Log in with Spotify</Link>
+        <Link href={`/api/spotifyLogin?pathname=${pathname}`}>Log In</Link>
     </>
 }

@@ -1,6 +1,4 @@
-export async function generateSpotifyAccessToken() {
-    console.log("Spotify Token Axios call starts");
-    
+export async function generateSpotifyAccessToken() {    
     const requestBody = {
         client_id: process.env.SPOTIFY_CLIENT_ID, 
         client_secret: process.env.SPOTIFY_CLIENT_SECRET,
@@ -25,8 +23,6 @@ export async function generateSpotifyAccessToken() {
     }
 
     const data = await res.json()
-
-    console.log("Token found:", data)
     return data
     
 }
