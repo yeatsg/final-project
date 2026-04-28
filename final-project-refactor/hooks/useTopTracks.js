@@ -1,9 +1,8 @@
 
 
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSpotify } from "@/context/spotifyContext";
-import { useEffect } from "react";
 
 export function useTopTracks() {
     const spotifyCtx = useSpotify()

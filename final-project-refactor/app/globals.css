@@ -132,8 +132,27 @@ a {
   color: rgba(255, 255, 255, 0.792)
 }
 
+#head_logo {
+  height: 80px;
+  width: 80px;
+}
+
 #head_nav .container-row a {
   margin-left: 20px;
+}
+
+.head_desktop-shrink {
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.75) !important;
+
+  & #head_logo {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+#hamburger_desktop {
+  color: white;
 }
 
 .flex-center {
@@ -171,6 +190,7 @@ a {
   padding: 14px 20px 14px 20px;
   text-transform: uppercase;
   border-radius: 24px;
+  text-decoration-line: none;
 }
 
 .button_secondary {
@@ -179,6 +199,7 @@ a {
   padding: 14px 20px 14px 20px;
   text-transform: uppercase;
   border-radius: 24px;
+  text-decoration-line: none;
 }
 
 .bg_primary-color {

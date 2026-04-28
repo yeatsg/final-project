@@ -1,18 +1,23 @@
 "use client"
 
-import { useState } from "react";
-//import axios from "axios";
 import Link from 'next/link';
+import { useState } from "react";
+import { useSpotify } from "@/context/spotifyContext";
 import Modal from "@/components/Modal";
 
 export default function Home(props) {
 
-  // State variables
-
   const [topTracks, setTopTracks] = useState(null);
   const [failureModalShown, setFailureModalShown] = useState(false)
-
-  // Axios call //
+  
+  const checkSpotifyContext = () => {
+    let spotifyCtx = useSpotify();
+    
+    if (spotifyCtx.code == true) {
+      return true
+    } else { return false }
+  }
+  const doesSpotifyContextExist = checkSpotifyContext();
 
   const searchTopPlaylist = async (e) => {
 
@@ -30,13 +35,12 @@ export default function Home(props) {
     console.log(data)
   };
 
-  const removeLinkStyle = { textDecoration: "none" };
+
+
 
   return (
     <div className="render-body">
-
       <button onClick={() => setFailureModalShown(true)}>
-        test modal
       </button>
 
       <Modal shown={failureModalShown} setShown={setFailureModalShown}>
@@ -51,7 +55,7 @@ export default function Home(props) {
             <h1>Your Spotify artists, your money</h1>
             <h3>How much have your favorites made per stream?</h3>
             <br />
-            <Link href="/create" className="button_secondary" style={removeLinkStyle}>
+            <Link href="/create" className="button_secondary">
               Let's Find Out
             </Link>
           </div>
