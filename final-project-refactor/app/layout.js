@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Header from "@/components/Header";
 import SpotifyContextProvider from "@/context/SpotifyContextProvider";
-
+import { HeightProvider } from "@/hooks/useHeaderHeight";
 
 export default async function RootLayout({ children }) {
 
@@ -16,8 +16,10 @@ export default async function RootLayout({ children }) {
         <head>
         </head>
         <body>
-          <Header></Header>
-          {children}
+          <HeightProvider>
+            <Header></Header>
+            {children}
+          </HeightProvider>
           <footer className="bg_secondary-color">
             <div className="center-flex">
               <p>Powered by Spotify</p>
