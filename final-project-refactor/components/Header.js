@@ -45,9 +45,9 @@ export default function Header() {
                 {
                     !desktopHamburgerVisible ? (
                         <div className="container-row">
-                            <Link href="/" >🏠︎</Link>
-                            <Link href="/about">About</Link>
-                            <Link href="/create">Create</Link>
+                            <Link href="/" id="nav_home-link">🏠︎</Link>
+                            <Link href="/about" id="nav_about-link">About</Link>
+                            <Link href="/create" id="nav_create-link">Create</Link>
                             <SpotifyLoginLink />
                         </div>
                     ) : (

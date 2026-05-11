@@ -41,40 +41,43 @@ export default function Home(props) {
         <button></button>
       </Modal>
       <section className="bg_primary-color" id="home_hero-container" style={{ minHeight: `calc(100vh - ${elementHeight}px)` }}>
-        <div className="spacing-md rel-container">
-          <div className="top-banner">
-            <h1>Unwrapped<br />
-              <span>Powered by © Spotify</span></h1>
+        <div className="spacing-sm flex-height-fill">
+          <div id="home_h1-container">
+            <h1>
+              <span className='header-title'>Unwrapped</span>
+              <span className='header-subtitle'>Powered by © Spotify</span>
+            </h1>
           </div>
-          <div className="text-body">
-            <h2>
+          <div className='text-body flex-height-fill rel-container'>
+            <h2 className='margin-bottom-sm'>
               Your Spotify Artists. Your money.
             </h2>
-            <h3>See the real estimate of what your streams earned them.</h3>
+            <h3 className='margin-bottom-md'>See the real estimate of what your streams earned them.</h3>
             {(spotifyCtx.code !== null) ? (
-              <Link href="/create" className="button_secondary">
+              <Link href="/create" className="button_secondary margin-bottom-lg">
                 See My Impact
               </Link>
             ) : (
-              <button onClick={() => setFailureModalShown(true)} className='button_secondary' >See My Impact</button>
+              <button onClick={() => setFailureModalShown(true)} className='button_secondary margin-bottom-lg' >See My Impact</button>
             )}
+            <div id="home_abstract-object"></div>
           </div>
         </div>
       </section>
-      <section className="bg_secondary-color" id="home_wrapped-container">
-        <div className="spacing-md">
-          <div className="flex-2col">
+      <section className="bg_secondary-color" id="home_wrapped--container">
+        <div className="spacing-md flex-height-fill">
+          <div className="flex-2col flex-height-fill" style={{height: '100%'}}>
             <div className="text-body">
-              <h2>Spotify Wrapped tells you what you loved.</h2>
-              <h3>Unwrapped tells you what that love was worth.</h3>
+              <h2 className='margin-bottom-sm'>Spotify Wrapped tells you what you loved.</h2>
+              <h3 className='margin-bottom-md'>Unwrapped tells you what that love was worth.</h3>
               <p>Last December, millions shared their top artists. But no one shared if those streams paid for coffee, groceries, or rent. We built Unwrapped to close that gap.
               </p>
             </div>
-            <div id="home_con-2_img-container">
-              <div className='rel-container'>
-                <img id="home_con-2_img-1" src="streaming-bg-image.jpg" className="img_display-md-thin" alt="Stock Image 1" />
-                <img id="home_con-2_img-2" src="streaming-bg-image.jpg" className="img_display-md-thin" alt="Stock Image 2" />
-                <img id="home_con-2_img-3" src="streaming-bg-image.jpg" className="img_display-md-thin" alt="Stock Image 3" />
+            <div id="home_wrapped--img-container">
+              <div className='grid-3col_staggered'>
+                <img id="home_wrapped--img-1" src="streaming-bg-image.jpg" className="img_display-md-thin" alt="Stock Image 1" />
+                <img id="home_wrapped--img-2" src="streaming-bg-image.jpg" className="img_display-md-thin" alt="Stock Image 2" />
+                <img id="home_wrapped--img-3" src="streaming-bg-image.jpg" className="img_display-md-thin" alt="Stock Image 3" />
               </div>
             </div>
           </div>
@@ -83,7 +86,7 @@ export default function Home(props) {
       <section className='bg_primary-color' id="home_how-to-container">
         <div className='spacing-md'>
           <div className='text-body'>
-            <h2>Four Steps. Real Estimates</h2>
+            <h2 className='margin-bottom-md'>Four Steps. Real Estimates</h2>
             <div className='container-row'>
               <div className='card-md glass'>
                 <h5>Login with Spotify</h5>
